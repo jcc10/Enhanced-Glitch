@@ -1,0 +1,19 @@
+{
+    "manifest_version": 2,
+    "name": "Glitch Improvements Extention",
+    "version": "0.1",
+    "content_scripts": [
+        {
+            "matches": [
+              "https://glitch.com/edit/*"
+            ],
+            "js": [
+                "inject.js"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        "js-beautify_1.10.1_beautify.js",
+        "content.js"
+    ]
+}
