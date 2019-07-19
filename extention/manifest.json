@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
-    "name": "Glitch Improvements Extention",
+    "name": "Enhanced Glitch",
     "description": "Enhances the Glitch.com editor by adding missing features.",
-    "version": "0.0.0.2",
+    "version": "0.0.0.3",
     "content_scripts": [
         {
             "matches": [
@@ -10,6 +10,9 @@
             ],
             "js": [
                 "inject.js"
+            ],
+            "css": [
+                "codeHinting.css"
             ]
         }
     ],
