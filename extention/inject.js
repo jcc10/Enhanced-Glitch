@@ -13,4 +13,6 @@ function injectScript(file_path, tag) {
     node.appendChild(script);
 }
 injectScript(chrome.extension.getURL('js-beautify_1.10.1_beautify.js'), 'body');
+injectScript(chrome.extension.getURL('js-beautify_1.10.1_beautify-css.js'), 'body');
+injectScript(chrome.extension.getURL('js-beautify_1.10.1_beautify-html.js'), 'body');
 injectScript(chrome.extension.getURL('content.js'), 'body');

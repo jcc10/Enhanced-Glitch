@@ -4,10 +4,22 @@ function addExtention() {
     return new Promise(function(resolve, reject) {
         CodeMirror.defineExtension("autoFormatRange", function (from, to) {
             let cm = this;
-            let originalCode = cm.getRange(from, to);
-            let formattedCode = js_beautify(originalCode);
-            cm.replaceRange(formattedCode, from, to);
-            cm.setSelection(from, {line:cm.lineCount()});
+            let mode = cm.options.mode;
+            if(mode == "text/jsx" || mode == "text/html" || mode == "text/css"){
+                let originalCode = cm.getRange(from, to);
+                let formattedCode;
+                if(mode == "text/jsx"){
+                    formattedCode = js_beautify(originalCode);
+                } else if(mode == "text/html") {
+                    formattedCode = html_beautify(originalCode);
+                } else if(mode == "text/css") {
+                    formattedCode = css_beautify(originalCode);
+                }
+                cm.replaceRange(formattedCode, from, to);
+                cm.setSelection(from, {line:cm.lineCount()});
+            } else {
+                // Not supported.
+            }
         });
         resolve();
     });;
@@ -32,11 +44,16 @@ function addKeybindings() {
 
 function changeSaveMessage() {
     return new Promise(function(resolve, reject) {
-        document.querySelector("aside.notifications div.notification.notifyAutosave").innerHTML = "Nice job remembering to save!"
+        document.querySelector("aside.notifications div.notification.notifyAutosave").innerHTML = "Nice job remembering to save!";
+        resolve();
     });
+}
+
+function enhanced() {
+    console.log("Glitch Enhanced")
 }
 
 addExtention()
 .then(addKeybindings)
 .then(changeSaveMessage)
-.then(()=>console.log("Glitch Enhanced"))
+.then(enhanced)
