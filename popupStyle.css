@@ -1,0 +1,9 @@
+body {
+    width: 25em;
+}
+#enhancedGlitch {
+    width: 50vw;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+}

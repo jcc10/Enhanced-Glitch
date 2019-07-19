@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Glitch Improvements Extention",
-    "version": "0.1",
+    "version": "0.0.0.1",
     "content_scripts": [
         {
             "matches": [
@@ -15,5 +15,18 @@
     "web_accessible_resources": [
         "js-beautify_1.10.1_beautify.js",
         "content.js"
-    ]
+    ],
+    "browser_action": {
+        "default_icon": {
+            "16": "16.png",
+            "32": "32.png"
+        },
+        "default_popup": "default_popup.html"
+    },
+    "icons": {
+        "16": "16.png",
+        "32": "32.png",
+        "48": "48.png",
+        "128": "128.png"
+    }
 }

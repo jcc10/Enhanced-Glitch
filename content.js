@@ -30,4 +30,13 @@ function addKeybindings() {
     });
 }
 
-addExtention().then(addKeybindings).then(()=>console.log("Glitch Enhanced"))
+function changeSaveMessage() {
+    return new Promise(function(resolve, reject) {
+        document.querySelector("aside.notifications div.notification.notifyAutosave").innerHTML = "Nice job remembering to save!"
+    });
+}
+
+addExtention()
+.then(addKeybindings)
+.then(changeSaveMessage)
+.then(()=>console.log("Glitch Enhanced"))
