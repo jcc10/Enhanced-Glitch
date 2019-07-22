@@ -643,15 +643,85 @@ function formatCode() {
     application.editor().autoFormatRange({line:0, ch:0}, {line:totalLines});
 }
 
-function addKeybindings() {
+function browserType() {
     return new Promise(function(resolve, reject) {
-        application.editor().addKeyMap(
-            {
-        		"Ctrl-Q": formatCode,
-        		"Cmd-Q": formatCode,
-                "Ctrl-Space": "autocomplete"
-            }
-        );
+        // Opera 8.0+
+        var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+
+        // Firefox 1.0+
+        var isFirefox = typeof InstallTrigger !== 'undefined';
+
+        // Safari 3.0+ "[object HTMLElementConstructor]"
+        var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+
+        // Internet Explorer 6-11
+        var isIE = /*@cc_on!@*/false || !!document.documentMode;
+
+        // Edge 20+
+        var isEdge = !isIE && !!window.StyleMedia;
+
+        // Chrome 1 - 71
+        var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+
+        // Blink engine detection
+        var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+        if(isFirefox){
+            resolve("firefox");
+        } else if (isChrome){
+            resolve("chrome")
+        } else {
+            reslove("other");
+        }
+
+    });
+}
+
+keyCodes = {
+    "chrome":{
+        "formatKey": [
+            "Ctrl-Q",
+            "Cmd-Q",
+        ],
+        "hintKey": [
+            "Ctrl-Space",
+        ],
+    },
+    "firefox":{
+        "formatKey": [
+            "Ctrl-D",
+        ],
+        "hintKey": [
+            "Ctrl-Space",
+        ],
+    },
+    "other":{
+        "formatKey": [
+            "Ctrl-Q",
+            "Cmd-Q",
+        ],
+        "hintKey": [
+            "Ctrl-Space",
+        ],
+    },
+};
+
+function addKeybindings(browserType) {
+    return new Promise(function(resolve, reject) {
+        let ourKeyMap = {};
+        let type;
+        if(keyCodes[browserType]){
+            type = browserType;
+        } else {
+            type = "other";
+        }
+        for(let key of keyCodes[type]["formatKey"]){
+            ourKeyMap[key] = formatCode;
+        }
+        for(let key of keyCodes[type]["hintKey"]){
+            ourKeyMap[key] = "autocomplete";
+        }
+        application.editor().addKeyMap(ourKeyMap);
         resolve();
     });
 }
@@ -664,12 +734,13 @@ function changeSaveMessage() {
 }
 
 function enhanced() {
-    console.log("Glitch Enhanced")
+    console.log("%cGlitch Enhanced", "font-size: 25px; color:purple;")
 }
 
 addBeautifyExtention()
 .then(addHintExtention)
 .then(addJSHintExtention)
+.then(browserType)
 .then(addKeybindings)
 .then(changeSaveMessage)
 .then(enhanced)

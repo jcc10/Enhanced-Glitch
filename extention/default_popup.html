@@ -1,18 +1,20 @@
 <html>
     <head>
+        <meta charset="utf-8">
         <title>Enhanced Glitch</title>
         <link rel="stylesheet" href="popupStyle.css">
     </head>
     <body>
-        <div><img src='./enhancedGlitch.png' id='enhancedGlitch'></div>
+        <div><img src='enhancedGlitch.png' id='enhancedGlitch'></div>
         <h1>Enhanced Glitch</h1>
         <h2>By Joshua Cline</h2>
         <p>Enhanced Glitch fixes and enhances features that are absent from the <a href="glitch.com">glitch.com</a> editor.</p>
         <p>Current Features added include:</p>
         <ul>
-            <li>Javascript, CSS, and HTML Code Beautifying: Ctrl+Q</li>
+            <li>Javascript, CSS, and HTML Code Beautifying: <span id="formatKey">Ctrl+Q</span></li>
             <li>Changes "psst, Glitch autosaves 八(＾□＾*)" to "Nice job remembering to save!"</li>
-            <li>EXPEREMENTAL: Javascript code hinting (Ctrl-Space)</li>
+            <li>EXPEREMENTAL: Javascript code hinting (<span id="hintKey">Ctrl-Space</span>)</li>
         </ul>
+        <script src="popup.js" charset="utf-8"></script>
     </body>
  </html>
