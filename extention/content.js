@@ -8,7 +8,7 @@
  */
 let assert = function(thing, thingName) {
     if(!thing){
-        console.error("Assert Error on: " + thingName);
+        console.trace("Assert Error on: " + thingName);
     }
 }
 
