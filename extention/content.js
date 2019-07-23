@@ -1,9 +1,24 @@
+
+/**
+ * assert
+ * Allows for assertions. Telling
+ * @param {<type>}	thing - this is the parameter thing
+ * @param {<type>}	thingName - this is the parameter thingName
+ *
+ */
 let assert = function(thing, thingName) {
     if(!thing){
         console.error("Assert Error on: " + thingName);
     }
 }
 
+
+/**
+ * addBeautifyExtention
+ * Adds the code cleanup functions
+ * (acutally just calls the respective js-beautify code)
+ * @return {Promise}
+ */
 function addBeautifyExtention() {
     assert(CodeMirror, "CodeMirror");
     return new Promise(function(resolve, reject) {
@@ -30,6 +45,14 @@ function addBeautifyExtention() {
     });;
 };
 
+
+/**
+ * addHintExtention
+ * @todo Check if this is working properly.
+ *
+ * @return {Promise}
+ *
+ */
 function addHintExtention() {
     assert(CodeMirror, "CodeMirror");
     return new Promise(function(resolve, reject) {
@@ -484,6 +507,14 @@ function addHintExtention() {
     });
 }
 
+
+/**
+ * addJSHintExtention
+ * Adds the JS Hinting function
+ *
+ * @return {Promise}
+ *
+ */
 function addJSHintExtention() {
     assert(CodeMirror, "CodeMirror");
     return new Promise(function(resolve, reject) {
@@ -637,12 +668,29 @@ function addJSHintExtention() {
     });
 }
 
+
+/**
+ * formatCode
+ * This function is called to format the code.
+ *
+ */
 function formatCode() {
     assert(application, "application");
     var totalLines = application.editor().lineCount();
     application.editor().autoFormatRange({line:0, ch:0}, {line:totalLines});
 }
 
+
+/**
+ * browserType
+ * Try's to figure out the browser brand (Chrome, FF, Other)
+ * Doesn't seem to work.
+ *
+ * Why couldn't the browsers actually use useragents? (I don't even care about spoofing.)
+ *
+ * @return {Promise} Resolves to the browsers type
+ *
+ */
 function browserType() {
     return new Promise(function(resolve, reject) {
         // Opera 8.0+
@@ -677,6 +725,12 @@ function browserType() {
     });
 }
 
+/**
+ * keyCodes
+ * we use this to lookup what keycodes to use depending on the browser.
+ * @type {Object}
+ *
+ */
 keyCodes = {
     "chrome":{
         "formatKey": [
@@ -686,14 +740,21 @@ keyCodes = {
         "hintKey": [
             "Ctrl-Space",
         ],
+        "saveKey": [
+            "Ctrl-S"
+        ]
     },
     "firefox":{
         "formatKey": [
             "Ctrl-D",
+            "Cmd-D",
         ],
         "hintKey": [
             "Ctrl-Space",
         ],
+        "saveKey": [
+            "Ctrl-S"
+        ]
     },
     "other":{
         "formatKey": [
@@ -706,6 +767,16 @@ keyCodes = {
     },
 };
 
+
+/**
+ * addKeybindings
+ * Adds keybindings depending on what browser we are useing.
+ *
+ * @param {<type>}	browserType - this is the parameter browserType
+ *
+ * @return {Promise}
+ *
+ */
 function addKeybindings(browserType) {
     return new Promise(function(resolve, reject) {
         let ourKeyMap = {};
@@ -721,11 +792,22 @@ function addKeybindings(browserType) {
         for(let key of keyCodes[type]["hintKey"]){
             ourKeyMap[key] = "autocomplete";
         }
+        for(let key of keyCodes[type]["saveKey"]){
+            ourKeyMap[key] = changeSaveMessage;
+        }
         application.editor().addKeyMap(ourKeyMap);
         resolve();
     });
 }
 
+
+/**
+ * changeSaveMessage
+ * Changes the save message to something nicer.
+ *
+ * @return {Promise}
+ *
+ */
 function changeSaveMessage() {
     return new Promise(function(resolve, reject) {
         document.querySelector("aside.notifications div.notification.notifyAutosave").innerHTML = "Nice job remembering to save!";
@@ -733,6 +815,12 @@ function changeSaveMessage() {
     });
 }
 
+
+/**
+ * enhanced
+ * Prints a message to console to show that nothing had a problem.
+ *
+ */
 function enhanced() {
     console.log("%cGlitch Enhanced", "font-size: 25px; color:purple;")
 }
@@ -742,5 +830,4 @@ addBeautifyExtention()
 .then(addJSHintExtention)
 .then(browserType)
 .then(addKeybindings)
-.then(changeSaveMessage)
 .then(enhanced)
