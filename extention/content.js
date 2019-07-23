@@ -1275,6 +1275,9 @@ keyCodes = {
         "hintKey": [
             "Ctrl-Space",
         ],
+        "saveKey": [
+            "Ctrl-S"
+        ]
     },
 };
 
