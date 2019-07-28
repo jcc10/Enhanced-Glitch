@@ -48,6 +48,7 @@ function addBeautifyExtention() {
 
 /**
  * addHintExtention
+ * @url https://codemirror.net/addon/hint/show-hint.js
  * @todo Check if this is working properly.
  *
  * @return {Promise}
@@ -511,7 +512,7 @@ function addHintExtention() {
 /**
  * addJSHintExtention
  * Adds the JS Hinting function
- *
+ * @url https://codemirror.net/addon/hint/javascript-hint.js
  * @return {Promise}
  *
  */
@@ -668,6 +669,14 @@ function addJSHintExtention() {
     });
 }
 
+
+/**
+ * addCSSHintExtention
+ *
+ * @url https://codemirror.net/addon/hint/css-hint.js
+ * @return {Promise}
+ *
+ */
 function addCSSHintExtention() {
     assert(CodeMirror, "CodeMirror");
     return new Promise(function(resolve, reject) {
@@ -721,6 +730,14 @@ function addCSSHintExtention() {
     });
 }
 
+
+/**
+ * addXMLHintExtention
+ *
+ * @url https://codemirror.net/addon/hint/xml-hint.js
+ * @return {Promise}
+ *
+ */
 function addXMLHintExtention() {
     assert(CodeMirror, "CodeMirror");
     return new Promise(function(resolve, reject) {
@@ -835,6 +852,14 @@ function addXMLHintExtention() {
     });
 }
 
+
+/**
+ * addHTMLHintExtention
+ *
+ * @url https://codemirror.net/addon/hint/html-hint.js
+ * @return {Promise}
+ *
+ */
 function addHTMLHintExtention() {
     assert(CodeMirror, "CodeMirror");
     return new Promise(function(resolve, reject) {
