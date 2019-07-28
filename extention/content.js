@@ -1336,8 +1336,7 @@ function changeSaveMessage() {
  *
  */
 function enhanced() {
-    console.log("%cGlitch Enhanced", "font-size: 25px; color:purple;")
-    console.log("Glitch Enhanced")
+    console.log("%cGlitch Enhanced", "font-size: 25px; color:purple;");
 }
 
 addBeautifyExtention()
