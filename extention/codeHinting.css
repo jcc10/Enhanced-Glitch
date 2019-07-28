@@ -34,3 +34,29 @@ li.CodeMirror-hint-active {
   background: #08f;
   color: white;
 }
+
+body[data-theme="sugar"] .CodeMirror-hints {
+    background: #fff;
+}
+
+body[data-theme="sugar"] .CodeMirror-hint {
+    color: #222;
+}
+
+body[data-theme="sugar"] li.CodeMirror-hint-active {
+    background: rgba(137,219,221,0.5);
+    color: #222;
+}
+
+body[data-theme="cosmos"] .CodeMirror-hints {
+    background: #160f19;
+}
+
+body[data-theme="cosmos"] .CodeMirror-hint {
+    color: #eee;
+}
+
+body[data-theme="cosmos"] li.CodeMirror-hint-active {
+    background: rgba(114,192,194,0.5);
+    color: #eee;
+}

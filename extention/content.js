@@ -1314,6 +1314,28 @@ function addKeybindings(browserType) {
     });
 }
 
+/**
+ * addThemeObserver
+ * Adds observer to the theme, updates the theme for internal stuff.
+ *
+ * @param {<type>}	browserType - this is the parameter browserType
+ *
+ * @return {Promise}
+ *
+ */
+function addThemeObserver(browserType) {
+    return new Promise(function(resolve, reject) {
+        document.querySelector("body").dataset.theme = application.currentTheme();
+        console.log(application.currentTheme());
+        application.currentTheme.observe(
+        	theme=>{
+        		document.querySelector("body").dataset.theme = theme;
+        	}
+        );
+        resolve();
+    });
+}
+
 
 /**
  * changeSaveMessage
@@ -1336,7 +1358,7 @@ function changeSaveMessage() {
  *
  */
 function enhanced() {
-    console.log("%cGlitch Enhanced", "font-size: 25px; color:purple;");
+    console.log("%cGlitch Enhanced V0.0.2.0", "font-size: 25px; color:purple;");
 }
 
 addBeautifyExtention()
@@ -1347,4 +1369,5 @@ addBeautifyExtention()
 .then(addHTMLHintExtention)
 .then(browserType)
 .then(addKeybindings)
+.then(addThemeObserver)
 .then(enhanced)
