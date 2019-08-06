@@ -1,0 +1,36 @@
+table.hotkeys {
+  background-color: #F0F0F0;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.hotkeys td, table.hotkeys th {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+table.hotkeys tr:nth-child(even) {
+  background: #E0E0E0;
+}
+table.hotkeys thead {
+  background: #000BF5;
+  background: -moz-linear-gradient(top, #4048f7 0%, #1923f6 66%, #000BF5 100%);
+  background: -webkit-linear-gradient(top, #4048f7 0%, #1923f6 66%, #000BF5 100%);
+  background: linear-gradient(to bottom, #4048f7 0%, #1923f6 66%, #000BF5 100%);
+}
+table.hotkeys thead th {
+  font-weight: bold;
+  color: #FFFFFF;
+}
+table.hotkeys tfoot td {
+  font-size: 14px;
+}
+table.hotkeys tfoot .links {
+  text-align: right;
+}
+table.hotkeys tfoot .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}

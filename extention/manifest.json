@@ -12,7 +12,8 @@
                 "inject.js"
             ],
             "css": [
-                "codeHinting.css"
+                "codeHinting.css",
+                "keyBinds.css",
             ]
         }
     ],

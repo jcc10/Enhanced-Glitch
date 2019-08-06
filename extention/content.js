@@ -1378,6 +1378,46 @@ function changeSaveMessage() {
 
 
 /**
+ * changeKeybindingMenu
+ * Improves the keybinding menu.
+ *
+ * @return {Promise}
+ *
+ */
+function changeKeybindingMenu() {
+    return new Promise(function(resolve, reject) {
+        document.querySelector(".keyboard-shortcuts-overlay section.info p").parentElement.innerHTML = `
+        <table class="hotkeys">
+            <thead>
+                <tr>
+                    <th>Hotkey</th>
+                    <th>Action</th>
+                    <th>Enhancement</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${}
+            </tbody>
+        </table>
+        `;
+        resolve();
+    });
+}
+
+function generateKeybindingItems() {
+
+}
+
+function generateKeybindingItem(item){
+    return `<tr>
+        <td>${item.key}</td>
+        <td>${item.action}</td>
+        <td>${item.enhancement}</td>
+    </tr>`;
+}
+
+
+/**
  * enhanced
  * Prints a message to console to show that nothing had a problem.
  *
@@ -1395,4 +1435,5 @@ addBeautifyExtention()
 .then(browserType)
 .then(addKeybindings)
 .then(addThemeObserver)
+.then(changeSaveMessage)
 .then(enhanced)
