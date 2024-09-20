@@ -1,8 +1,12 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Enhanced Glitch",
     "description": "Enhances the Glitch.com editor by adding missing features.",
-    "version": "0.0.2.0",
+    "version": "0.0.3.0",
+    "permissions": [],
+    "host_permissions": [
+        "https://glitch.com/edit/*"
+    ],
     "content_scripts": [
         {
             "matches": [
@@ -22,11 +26,12 @@
         "js-beautify_1.10.1_beautify-html.js",
         "content.js"
     ],
-    "browser_action": {
+    "action": {
         "default_icon": {
             "16": "16.png",
             "32": "32.png"
         },
+        "default_title": "Enhanced Glitch",
         "default_popup": "default_popup.html"
     },
     "icons": {
